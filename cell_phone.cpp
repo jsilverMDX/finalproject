@@ -2,16 +2,6 @@
 // jsilverMDX ("Jonathan Silverman")
 #include "cell_phone.h"
 
-vector<Contact> contact_list;
-
-vector<TextMessage> text_messages;
-
-string MY_PHONE_NUMBER = "4242309994";
-
-string RINGTONES[5] = { "Whiney", "HighlyAnnoyingSound", "TooMuchBeeping", "EardumBlower", "BansheeHowl"};
-
-string ringtone = RINGTONES[0];
-
 void show_contact_list() {
   ifstream infile("contacts.txt");
   string line;
@@ -48,6 +38,7 @@ void show_text_screen() {
   TextMessage text_message(MY_PHONE_NUMBER, to, message);
   text_message.send();
   text_messages.push_back(text_message);
+  cout << "Sent " << message << " to " << to << endl;
 }
 
 void show_change_ringtone() {
@@ -59,6 +50,7 @@ void show_change_ringtone() {
   cout << "Input choice: ";
   cin >> choice;
   ringtone = RINGTONES[choice];
+  cout << "Ringtone changed to " << ringtone << endl;
 }
 
 int main() {

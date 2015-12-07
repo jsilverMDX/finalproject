@@ -3,8 +3,11 @@
 #include <fstream>
 #include <unistd.h>
 #include <vector>
+#include <curses.h>
 
 using namespace std;
+
+int might_not_be_used = 1;
 
 class Contact {
 string phone_number;
@@ -23,7 +26,7 @@ class Call {
   string phone_number_to;
   string phone_number_from;
   bool active;
-  int duration; // in seconds
+  // int duration; // in seconds
 public:
   Call(string f, string t);
   void hangup();
@@ -32,7 +35,9 @@ public:
 Call::Call(string f, string t) {
   phone_number_from = f;
   phone_number_to = t;
-  // some kind of loop to simulate call.. with some escape sequence
+  active = true;
+  char c;
+  cout << "Called " << phone_number_to << endl;
 }
 
 void Call::hangup() {
@@ -60,3 +65,14 @@ TextMessage::TextMessage(string f, string t, string m){
 void TextMessage::send() {
   sent = true; // fake sending, nothing happens
 }
+
+
+vector<Contact> contact_list;
+
+vector<TextMessage> text_messages;
+
+string MY_PHONE_NUMBER = "4242309994";
+
+string RINGTONES[5] = { "Whiney", "HighlyAnnoyingSound", "TooMuchBeeping", "EardumBlower", "BansheeHowl"};
+
+string ringtone = RINGTONES[0];
